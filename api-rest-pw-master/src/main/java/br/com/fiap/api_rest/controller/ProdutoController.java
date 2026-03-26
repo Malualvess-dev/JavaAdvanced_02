@@ -1,5 +1,6 @@
 package br.com.fiap.api_rest.controller;
 
+import br.com.fiap.api_rest.dto.ProdutoLista;
 import br.com.fiap.api_rest.dto.ProdutoRequest;
 import br.com.fiap.api_rest.dto.ProdutoResponse;
 import br.com.fiap.api_rest.model.Produto;
@@ -39,11 +40,13 @@ public class ProdutoController {
         return new ResponseEntity<>(produto, HttpStatus.OK);
     }
 
+    //-------------------------------------------------------------
+
     @GetMapping
-    public ResponseEntity<Page<ProdutoResponse>> readProduto() {
+    public ResponseEntity<Page<ProdutoLista>> readProduto() {
         // page number, page size, sort
         Pageable pageable = PageRequest.of(0, 2, Sort.by("nome").ascending());
-        Page<ProdutoResponse> produtos = produtoService.read(pageable);
+        Page<ProdutoLista> produtos = produtoService.read(pageable);
         if (produtos.isEmpty()) {
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
