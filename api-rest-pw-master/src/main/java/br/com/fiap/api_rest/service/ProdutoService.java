@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,7 +43,7 @@ public class ProdutoService {
         return produtoMapper.produtoToResponse(produto.get());
     }
 
-    //Page, Pageable
+    // Page, Pageable
     public Page<ProdutoLista> read(Pageable pageable) {
         return produtoRepository
                 .findAll(pageable)

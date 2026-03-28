@@ -12,15 +12,15 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
 public class ProdutoMapper {
-    public ProdutoResponse produtoToResponse(Produto produto){
-        //Link para a lista de produtos ou seja, read(pageable) do controller
+    public ProdutoResponse produtoToResponse(Produto produto) {
+        // Link para a lista de produtos, ou seja, read(pageable) do controller
         Link link = linkTo(methodOn(ProdutoController.class).readProduto(0)).withRel("Lista de produtos");
         return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getPreco(), link);
     }
 
-    public ProdutoLista produtoToResponseLista(Produto produto){
+    public ProdutoLista produtoToProdutoLista(Produto produto) {
         // Link para ele mesmo, para o produto pelo id
-        Link link =  linkTo(methodOn(ProdutoController.class).readProduto(produto.getId())).withRel("Detalhes do produto");
+        Link link = linkTo(methodOn(ProdutoController.class).readProduto(produto.getId())).withRel("Detalhes do produto");
         return new ProdutoLista(produto.getNome(), link);
     }
 }
